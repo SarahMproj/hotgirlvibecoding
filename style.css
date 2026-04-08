@@ -490,6 +490,17 @@
   font-size: clamp(2.5rem, 0.3rem + 6vw, 7rem);
 }
 
+.hero__title-feat {
+  display: block;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: var(--text-lg);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  margin-top: var(--space-3);
+}
+
 .hero__subtitle {
   font-size: var(--text-base);
   color: var(--color-text-muted);
@@ -724,6 +735,15 @@
   font-style: italic;
   line-height: 0.95;
   color: var(--color-text);
+}
+
+.speaker__aka {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin-top: var(--space-2);
 }
 
 .speaker__role {
