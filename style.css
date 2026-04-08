@@ -687,35 +687,26 @@
 }
 
 .timeline__item {
-  display: grid;
-  grid-template-columns: auto 1px 1fr;
-  gap: 0 var(--space-4);
+  display: flex;
+  gap: var(--space-4);
   padding-bottom: var(--space-10);
 }
 
-@media (max-width: 767px) {
-  .timeline__item {
-    display: flex;
-    gap: var(--space-4);
-  }
-  .timeline__marker {
-    flex-shrink: 0;
-    min-width: auto;
-  }
-  .timeline__line {
-    display: none;
-  }
-  .timeline__content {
-    flex: 1;
-    min-width: 0;
-  }
+.timeline__marker {
+  flex-shrink: 0;
 }
 
-@media (min-width: 768px) {
-  .timeline__item {
-    gap: 0 var(--space-8);
-  }
+.timeline__line {
+  flex-shrink: 0;
+  width: 1px;
 }
+
+.timeline__content {
+  flex: 1;
+  min-width: 0;
+}
+
+
 
 .timeline__item:last-child {
   padding-bottom: 0;
@@ -740,6 +731,9 @@
 @media (min-width: 768px) {
   .timeline__marker {
     min-width: 90px;
+  }
+  .timeline__item {
+    gap: var(--space-6);
   }
 }
 
