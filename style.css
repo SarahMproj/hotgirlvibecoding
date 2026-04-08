@@ -693,13 +693,21 @@
   padding-bottom: var(--space-10);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .timeline__item {
-    grid-template-columns: auto 1px minmax(0, 1fr);
-    gap: 0 var(--space-3);
+    display: flex;
+    gap: var(--space-4);
   }
   .timeline__marker {
-    min-width: 60px;
+    flex-shrink: 0;
+    min-width: auto;
+  }
+  .timeline__line {
+    display: none;
+  }
+  .timeline__content {
+    flex: 1;
+    min-width: 0;
   }
 }
 
