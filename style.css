@@ -957,6 +957,14 @@
   background: var(--color-surface);
 }
 
+.tickets-section .section__header {
+  text-align: center;
+}
+
+.tickets-section .section__header .section__desc {
+  margin-inline: auto;
+}
+
 .tickets-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -971,7 +979,8 @@
   }
   .tickets-grid--two {
     grid-template-columns: repeat(2, 1fr);
-    max-width: 720px;
+    max-width: 800px;
+    margin-inline: auto;
   }
 }
 
