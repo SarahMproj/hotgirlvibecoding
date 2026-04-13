@@ -497,6 +497,12 @@
   padding: var(--space-4);
 }
 
+.hero__badge--grant {
+  background: linear-gradient(135deg, rgba(255, 45, 111, 0.15), rgba(212, 175, 55, 0.15));
+  border-color: rgba(212, 175, 55, 0.4);
+  color: #D4AF37;
+}
+
 .hero__badge {
   display: inline-block;
   font-size: var(--text-xs);
@@ -1095,6 +1101,35 @@
   flex-wrap: wrap;
   gap: var(--space-4);
   justify-content: center;
+}
+
+.sponsor-logos--real {
+  gap: var(--space-12);
+}
+
+.sponsor-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sponsor-logo__img {
+  height: 40px;
+  width: auto;
+  opacity: 0.85;
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.sponsor-logo:hover .sponsor-logo__img {
+  opacity: 1;
+}
+
+.sponsor-logo__label {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .sponsor-placeholder {
