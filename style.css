@@ -136,54 +136,36 @@
 }
 
 /* ========================================================================
-   PARTNER BAR
+   HERO PARTNER LOGOS
    ======================================================================== */
 
-.partner-bar {
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  padding: var(--space-2) 0;
-  position: relative;
-  z-index: 101;
-}
-
-.partner-bar__inner {
-  max-width: var(--content-wide);
-  margin: 0 auto;
-  padding: 0 var(--space-6);
+.hero__partners {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-4);
+  margin-bottom: var(--space-6);
 }
 
-.partner-bar__label {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: rgba(255, 255, 255, 0.3);
-  font-weight: 500;
-}
-
-.partner-bar__logo {
-  height: 16px;
+.hero__partner-logo {
+  height: 20px;
   width: auto;
-  opacity: 0.45;
+  opacity: 0.5;
   transition: opacity 0.3s var(--ease-out);
 }
 
-.partner-bar__logo--tw {
-  height: 20px;
+.hero__partner-logo--tw {
+  height: 26px;
 }
 
-.partner-bar:hover .partner-bar__logo {
-  opacity: 0.7;
+.hero__partners:hover .hero__partner-logo {
+  opacity: 0.8;
 }
 
-.partner-bar__sep {
+.hero__partner-sep {
   width: 1px;
-  height: 12px;
-  background: rgba(255, 255, 255, 0.12);
+  height: 16px;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 /* ========================================================================
