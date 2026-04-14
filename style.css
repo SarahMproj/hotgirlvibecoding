@@ -140,7 +140,19 @@
    ======================================================================== */
 
 .hero__techweek {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
   margin-bottom: var(--space-6);
+}
+
+.hero__techweek-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 500;
 }
 
 .hero__techweek-logo {
@@ -158,30 +170,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
   margin-top: var(--space-4);
   margin-bottom: var(--space-2);
   padding: var(--space-2) var(--space-5);
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  border: 1px solid rgba(212, 175, 55, 0.2);
   border-radius: 100px;
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.06), rgba(255, 45, 111, 0.04));
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(255, 45, 111, 0.03));
   width: fit-content;
   margin-inline: auto;
 }
 
-.hero__grant-label {
+.hero__grant-text {
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: rgba(212, 175, 55, 0.7);
-  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(212, 175, 55, 0.6);
+  font-weight: 400;
 }
 
-.hero__grant-logo {
-  height: 18px;
-  width: auto;
-  opacity: 0.85;
-  filter: brightness(1.1) sepia(0.3) saturate(0.5) hue-rotate(10deg);
+.hero__grant-a16z {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(212, 175, 55, 0.9);
 }
 
 /* ========================================================================
