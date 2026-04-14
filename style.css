@@ -139,33 +139,49 @@
    HERO PARTNER LOGOS
    ======================================================================== */
 
-.hero__partners {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-4);
+.hero__techweek {
   margin-bottom: var(--space-6);
 }
 
-.hero__partner-logo {
-  height: 20px;
+.hero__techweek-logo {
+  height: 28px;
   width: auto;
-  opacity: 0.5;
+  opacity: 0.55;
   transition: opacity 0.3s var(--ease-out);
 }
 
-.hero__partner-logo--tw {
-  height: 26px;
+.hero__techweek:hover .hero__techweek-logo {
+  opacity: 0.85;
 }
 
-.hero__partners:hover .hero__partner-logo {
-  opacity: 0.8;
+.hero__grant {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-2);
+  padding: var(--space-2) var(--space-5);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 100px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.06), rgba(255, 45, 111, 0.04));
+  width: fit-content;
+  margin-inline: auto;
 }
 
-.hero__partner-sep {
-  width: 1px;
-  height: 16px;
-  background: rgba(255, 255, 255, 0.15);
+.hero__grant-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(212, 175, 55, 0.7);
+  font-weight: 500;
+}
+
+.hero__grant-logo {
+  height: 18px;
+  width: auto;
+  opacity: 0.85;
+  filter: brightness(1.1) sepia(0.3) saturate(0.5) hue-rotate(10deg);
 }
 
 /* ========================================================================
