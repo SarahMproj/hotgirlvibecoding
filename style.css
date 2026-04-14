@@ -141,29 +141,35 @@
 
 .hero__techweek {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: var(--space-2);
   margin-bottom: var(--space-6);
+  padding: var(--space-2) var(--space-5);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.03);
+  width: fit-content;
+  margin-inline: auto;
 }
 
-.hero__techweek-label {
+.hero__techweek-text {
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: rgba(255, 255, 255, 0.4);
-  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
 }
 
 .hero__techweek-logo {
-  height: 28px;
+  height: 18px;
   width: auto;
-  opacity: 0.55;
+  opacity: 0.7;
   transition: opacity 0.3s var(--ease-out);
 }
 
 .hero__techweek:hover .hero__techweek-logo {
-  opacity: 0.85;
+  opacity: 0.95;
 }
 
 .hero__grant {
