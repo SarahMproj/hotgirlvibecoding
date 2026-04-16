@@ -496,6 +496,36 @@
   padding-top: var(--space-16);
 }
 
+.hero__portrait {
+  position: absolute;
+  right: -5%;
+  bottom: 0;
+  width: 45%;
+  max-width: 500px;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero__portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0.2;
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.6) 0%, transparent 80%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.6) 0%, transparent 80%);
+  filter: contrast(1.1) brightness(0.9);
+}
+
+@media (max-width: 767px) {
+  .hero__portrait {
+    width: 60%;
+    right: -10%;
+    opacity: 0.15;
+  }
+}
+
 .hero__bg-grid {
   position: absolute;
   inset: 0;
@@ -1192,6 +1222,11 @@
   display: block;
   opacity: 0.85;
   transition: opacity 0.3s var(--ease-out);
+}
+
+.sponsor-logo__img--bbe {
+  height: 24px;
+  opacity: 0.75;
 }
 
 .sponsor-logo:hover .sponsor-logo__img {
