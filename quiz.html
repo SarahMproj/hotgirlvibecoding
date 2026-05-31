@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Kind of Hot Girl Vibe Coder Are You? — HGVC Quiz</title>
+  <meta name="description" content="Take the quiz and find out your Hot Girl Vibe Coder archetype. Are you The Visionary Founder, The Aesthetic Engineer, The Chaos Shipper, or The Strategist?">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="What Kind of Hot Girl Vibe Coder Are You?">
+  <meta property="og:description" content="Find your archetype. Build your night. Ship your thing. Take the HGVC quiz.">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300..700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+
+  <link rel="stylesheet" href="./base.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a href="#main" class="sr-only" style="position:fixed;top:0;left:0;z-index:1000;background:var(--color-primary);color:#fff;padding:var(--space-2) var(--space-4);text-decoration:none;">Skip to content</a>
+
+  <!-- HEADER / NAV -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="./" class="header__logo" aria-label="Hot Girl Vibe Coding home">
+        <svg class="logo-svg" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="2" y="2" width="16" height="16" stroke="currentColor" stroke-width="2.5"/>
+          <rect x="22" y="2" width="16" height="16" stroke="#FF2D6F" stroke-width="2.5"/>
+          <rect x="2" y="22" width="16" height="16" stroke="#FF2D6F" stroke-width="2.5"/>
+          <rect x="22" y="22" width="16" height="16" stroke="currentColor" stroke-width="2.5"/>
+          <line x1="10" y1="6" x2="10" y2="14" stroke="currentColor" stroke-width="2"/>
+          <line x1="6" y1="10" x2="14" y2="10" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span class="header__logo-text">HGVC</span>
+      </a>
+
+      <nav class="header__nav" aria-label="Main navigation">
+        <ul role="list">
+          <li><a href="./#concept">Concept</a></li>
+          <li><a href="./#experience">Experience</a></li>
+          <li><a href="./#featuring">Featuring</a></li>
+          <li><a href="./quiz.html" aria-current="page">Quiz</a></li>
+          <li><a href="./#tickets">Tickets</a></li>
+          <li><a href="./#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <a href="./#tickets" class="header__cta">Get Tickets</a>
+
+      <button class="header__mobile-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <nav aria-label="Mobile navigation">
+      <ul role="list">
+        <li><a href="./#concept">Concept</a></li>
+        <li><a href="./#experience">Experience</a></li>
+        <li><a href="./#featuring">Featuring</a></li>
+        <li><a href="./quiz.html">Quiz</a></li>
+        <li><a href="./#tickets">Tickets</a></li>
+        <li><a href="./#faq">FAQ</a></li>
+      </ul>
+      <a href="./#tickets" class="btn btn--primary btn--full">Get Your Ticket</a>
+    </nav>
+  </div>
+
+  <main id="main">
+    <section class="section quiz-page" aria-labelledby="quiz-heading">
+      <div class="container quiz-container">
+
+        <!-- INTRO STATE -->
+        <div class="quiz" id="quiz" data-state="intro">
+
+          <div class="quiz__intro" data-screen="intro">
+            <p class="section__label">The Quiz</p>
+            <h1 id="quiz-heading" class="section__title quiz__title">What kind of Hot Girl<br>Vibe Coder are you?</h1>
+            <p class="quiz__desc">Eight questions. One archetype. Find out how you'd actually show up on build night — then come prove it on June 1.</p>
+            <div class="quiz__meta">
+              <span>8 questions</span>
+              <span aria-hidden="true">•</span>
+              <span>~90 seconds</span>
+              <span aria-hidden="true">•</span>
+              <span>4 archetypes</span>
+            </div>
+            <button class="btn btn--primary btn--lg" id="quizStart" type="button">Start the quiz</button>
+          </div>
+
+          <!-- QUESTION STATE -->
+          <div class="quiz__game" data-screen="game" hidden>
+            <div class="quiz__progress" aria-hidden="true">
+              <div class="quiz__progress-bar" id="quizProgressBar"></div>
+            </div>
+            <p class="quiz__step" id="quizStep">Question 1 of 8</p>
+            <h2 class="quiz__question" id="quizQuestion"></h2>
+            <div class="quiz__options" id="quizOptions" role="radiogroup" aria-label="Answer options"></div>
+            <div class="quiz__nav">
+              <button class="btn btn--outline" id="quizBack" type="button">Back</button>
+              <span class="quiz__hint" id="quizHint">Pick one to continue</span>
+            </div>
+          </div>
+
+          <!-- RESULT STATE -->
+          <div class="quiz__result" data-screen="result" hidden>
+            <p class="section__label" id="resultLabel">Your Archetype</p>
+            <h2 class="quiz__result-name" id="resultName"></h2>
+            <p class="quiz__result-tag" id="resultTag"></p>
+            <p class="quiz__result-desc" id="resultDesc"></p>
+
+            <div class="quiz__result-grid">
+              <div class="quiz__result-card">
+                <p class="quiz__result-card-label">Your superpower</p>
+                <p id="resultPower"></p>
+              </div>
+              <div class="quiz__result-card">
+                <p class="quiz__result-card-label">Build this on June 1</p>
+                <p id="resultBuild"></p>
+              </div>
+              <div class="quiz__result-card">
+                <p class="quiz__result-card-label">Find your people</p>
+                <p id="resultPeople"></p>
+              </div>
+            </div>
+
+            <!-- Email opt-in -->
+            <form class="quiz__optin" id="quizOptin" novalidate>
+              <p class="quiz__optin-title">Want your result + event updates in your inbox?</p>
+              <div class="quiz__optin-row">
+                <label for="quizEmail" class="sr-only">Email address</label>
+                <input type="email" id="quizEmail" name="email" placeholder="you@email.com" autocomplete="email" required>
+                <button class="btn btn--primary" type="submit">Send it to me</button>
+              </div>
+              <p class="quiz__optin-note" id="quizOptinNote">No spam. Just event drops + build-night details.</p>
+            </form>
+
+            <div class="quiz__share">
+              <p class="quiz__share-title">Share your archetype</p>
+              <div class="quiz__share-buttons">
+                <a class="btn btn--outline" id="shareTwitter" target="_blank" rel="noopener noreferrer">Share on X</a>
+                <button class="btn btn--outline" id="shareCopy" type="button">Copy link</button>
+              </div>
+            </div>
+
+            <div class="quiz__cta">
+              <a href="./#tickets" class="btn btn--primary btn--lg">Grab a ticket → June 1</a>
+              <button class="btn btn--outline" id="quizRestart" type="button">Retake quiz</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© 2026 Hot Girl Vibe Coding. Built for NY Tech Week.</p>
+      <p><a href="./">← Back to main site</a></p>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+  <script src="./quiz.js"></script>
+</body>
+</html>
