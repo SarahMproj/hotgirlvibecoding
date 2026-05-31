@@ -1,6 +1,6 @@
 // /api/signup — WhatsApp Inner Circle signup capture
-// Upserts into `signups` (deduped by phone). Returns ok regardless so the
-// frontend can reveal the WhatsApp invite link immediately.
+// Calls public.hgvc_signup() RPC (SECURITY DEFINER) — validates phone
+// and upserts into hgvc.signups (deduped by phone).
 
 import { getSupabase, corsHeaders, readJson, VALID_ARCHETYPES, VALID_STAGES, VALID_GOALS, VALID_MKT } from './_supabase.js';
 
@@ -26,32 +26,28 @@ export default async function handler(req, res) {
   if (!phone) return res.status(400).json({ ok: false, error: 'bad_phone' });
   if (!VALID_ARCHETYPES.has(body.archetype)) return res.status(400).json({ ok: false, error: 'bad_archetype' });
 
-  const row = {
-    phone,
-    archetype: body.archetype,
-    stage: VALID_STAGES.has(body.stage) ? body.stage : null,
-    goal: VALID_GOALS.has(body.goal) ? body.goal : null,
-    marketing_ready: VALID_MKT.has(body.marketing_ready) ? body.marketing_ready : null,
-    user_agent: (req.headers['user-agent'] || '').slice(0, 500) || null,
-    ip: (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || null
-  };
-
   const supa = getSupabase();
   if (!supa) {
-    console.log('[signup] Supabase not configured; row:', { ...row, phone: phone.replace(/.(?=.{4})/g, '*') });
+    console.log('[signup] Supabase not configured');
     return res.status(200).json({ ok: true, supabase: false });
   }
 
   try {
-    // Upsert on phone — re-takers replace their record with latest archetype
-    const { error } = await supa
-      .schema('hgvc')
-      .from('signups')
-      .upsert(row, { onConflict: 'phone' });
+    const { data, error } = await supa.rpc('hgvc_signup', {
+      p_phone: phone,
+      p_archetype: body.archetype,
+      p_stage: VALID_STAGES.has(body.stage) ? body.stage : null,
+      p_goal: VALID_GOALS.has(body.goal) ? body.goal : null,
+      p_mkt: VALID_MKT.has(body.marketing_ready) ? body.marketing_ready : null
+    });
     if (error) throw error;
+    if (data && data.ok === false) {
+      console.warn('[signup] rpc rejected:', data);
+      return res.status(200).json({ ok: true, supabase: false, err: data.error });
+    }
     return res.status(200).json({ ok: true });
   } catch (err) {
-    console.error('[signup] upsert error:', err);
-    return res.status(200).json({ ok: true, supabase: false, err: 'insert_failed' });
+    console.error('[signup] rpc error:', err);
+    return res.status(200).json({ ok: true, supabase: false, err: 'rpc_failed' });
   }
 }

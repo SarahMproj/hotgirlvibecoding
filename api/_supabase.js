@@ -1,8 +1,11 @@
-// Shared Supabase admin client for serverless functions.
-// Uses the service-role key so it can write to RLS-protected tables.
+// Shared Supabase client for serverless functions.
+// Uses the ANON (public) key only. All privileged writes go through
+// SECURITY DEFINER RPCs in the public schema (hgvc_track, hgvc_signup),
+// which validate input and enforce constraints server-side.
+//
 // SET in Vercel env vars (Production + Preview + Development):
-//   SUPABASE_URL              = https://<project-ref>.supabase.co
-//   SUPABASE_SERVICE_ROLE_KEY = <service_role secret>  (NOT the anon key)
+//   SUPABASE_URL      = https://<project-ref>.supabase.co
+//   SUPABASE_ANON_KEY = <anon public key>  (safe to expose; bound by RLS)
 
 import { createClient } from '@supabase/supabase-js';
 
@@ -11,11 +14,10 @@ let _client = null;
 export function getSupabase() {
   if (_client) return _client;
   const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const key = process.env.SUPABASE_ANON_KEY;
   if (!url || !key) return null;
   _client = createClient(url, key, {
-    auth: { persistSession: false, autoRefreshToken: false },
-    db: { schema: 'public' }  // default; use .schema('hgvc') in calls
+    auth: { persistSession: false, autoRefreshToken: false }
   });
   return _client;
 }

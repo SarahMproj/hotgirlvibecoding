@@ -13,9 +13,9 @@ Set these in **Vercel → Project → Settings → Environment Variables** (Prod
 | Name | Value |
 |---|---|
 | `SUPABASE_URL` | `https://nughpxqzfoytibwzollp.supabase.co` |
-| `SUPABASE_SERVICE_ROLE_KEY` | **Service-role key** from Supabase → Project Settings → API → service_role (secret) |
+| `SUPABASE_ANON_KEY` | **Anon public key** from Supabase → Project Settings → API → anon (safe to expose; bound by RLS) |
 
-⚠️ Service-role key bypasses RLS. Never expose it client-side. The Vercel functions are the only place it lives.
+All privileged writes go through SECURITY DEFINER RPCs (`public.hgvc_track`, `public.hgvc_signup`) which validate input and enforce constraints server-side. No service-role key is needed.
 
 After saving env vars, redeploy (or push any commit) and `/api/signup`, `/api/track`, `/api/stats` go live.
 
