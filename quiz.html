@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What Kind of Hot Girl Vibe Coder Are You? — HGVC Quiz</title>
-  <meta name="description" content="Take the quiz and find out your Hot Girl Vibe Coder archetype. Are you The Visionary Founder, The Aesthetic Engineer, The Chaos Shipper, or The Strategist?">
+  <meta name="description" content="What kind of Hot Girl Vibe Coder are you? Eight questions, four archetypes, one screenshot you'll actually want to share. Find out who you are when you build.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="What Kind of Hot Girl Vibe Coder Are You?">
@@ -85,7 +85,7 @@
           <div class="quiz__intro" data-screen="intro">
             <p class="section__label">The Quiz</p>
             <h1 id="quiz-heading" class="section__title quiz__title">What kind of Hot Girl<br>Vibe Coder are you?</h1>
-            <p class="quiz__desc">Eight questions. One archetype. Find out how you'd actually show up on build night — then come prove it on June 1.</p>
+            <p class="quiz__desc">Eight questions. Four archetypes. One screenshot you'll actually want to share. Find out who you are when you build — and what to do about it.</p>
             <div class="quiz__meta">
               <span>8 questions</span>
               <span aria-hidden="true">•</span>
@@ -117,43 +117,75 @@
             <p class="quiz__result-tag" id="resultTag"></p>
             <p class="quiz__result-desc" id="resultDesc"></p>
 
-            <div class="quiz__result-grid">
-              <div class="quiz__result-card">
-                <p class="quiz__result-card-label">Your superpower</p>
-                <p id="resultPower"></p>
-              </div>
-              <div class="quiz__result-card">
-                <p class="quiz__result-card-label">Build this on June 1</p>
-                <p id="resultBuild"></p>
-              </div>
-              <div class="quiz__result-card">
-                <p class="quiz__result-card-label">Find your people</p>
-                <p id="resultPeople"></p>
-              </div>
-            </div>
-
-            <!-- Email opt-in -->
-            <form class="quiz__optin" id="quizOptin" novalidate>
-              <p class="quiz__optin-title">Want your result + event updates in your inbox?</p>
-              <div class="quiz__optin-row">
-                <label for="quizEmail" class="sr-only">Email address</label>
-                <input type="email" id="quizEmail" name="email" placeholder="you@email.com" autocomplete="email" required>
-                <button class="btn btn--primary" type="submit">Send it to me</button>
-              </div>
-              <p class="quiz__optin-note" id="quizOptinNote">No spam. Just event drops + build-night details.</p>
-            </form>
-
-            <div class="quiz__share">
-              <p class="quiz__share-title">Share your archetype</p>
+            <!-- Share moved up: highest virality moment is right after identity reveal -->
+            <div class="quiz__share quiz__share--top">
               <div class="quiz__share-buttons">
-                <a class="btn btn--outline" id="shareTwitter" target="_blank" rel="noopener noreferrer">Share on X</a>
+                <a class="btn btn--primary" id="shareTwitter" target="_blank" rel="noopener noreferrer">Post on X</a>
                 <button class="btn btn--outline" id="shareCopy" type="button">Copy link</button>
               </div>
+              <p class="quiz__share-hint">Send it to the group chat. They'll know exactly which one they are.</p>
             </div>
 
+            <div class="quiz__result-grid">
+              <div class="quiz__result-card">
+                <p class="quiz__result-card-label">Your gift</p>
+                <p id="resultGift"></p>
+              </div>
+              <div class="quiz__result-card">
+                <p class="quiz__result-card-label">Your shadow</p>
+                <p id="resultShadow"></p>
+              </div>
+              <div class="quiz__result-card">
+                <p class="quiz__result-card-label">Your superpower in one line</p>
+                <p id="resultPower"></p>
+              </div>
+            </div>
+
+            <!-- LOVABLE: archetype-framed affiliate offer -->
+            <section class="quiz__offer quiz__offer--lovable" aria-labelledby="lovable-heading">
+              <p class="quiz__offer-eyebrow">Your next move</p>
+              <h3 class="quiz__offer-title" id="lovable-heading">Build the thing. Today. With Lovable.</h3>
+              <p class="quiz__offer-what"><strong>What is Lovable?</strong> An AI app builder that turns a paragraph into a working web app. You describe what you want — it generates real code, a real database, a real live URL. No setup. No engineering degree. Just vibes and a working product by lunch.</p>
+              <p class="quiz__offer-pitch" id="lovablePitch"></p>
+              <div class="quiz__offer-prompt">
+                <p class="quiz__offer-prompt-label">Your assignment <span class="quiz__offer-prompt-sub">(if you choose to accept it)</span></p>
+                <p id="lovableProject"></p>
+              </div>
+              <a class="btn btn--primary btn--lg" id="lovableCta" target="_blank" rel="noopener noreferrer sponsored">Start building on Lovable →</a>
+              <p class="quiz__offer-fine">HGVC referral link — you get free credits, we get free credits, everybody ships.</p>
+            </section>
+
+            <!-- HGVC INNER CIRCLE: WhatsApp community -->
+            <section class="quiz__offer quiz__offer--community" aria-labelledby="community-heading">
+              <p class="quiz__offer-eyebrow">Find your people</p>
+              <h3 class="quiz__offer-title" id="community-heading">Join the HGVC Inner Circle</h3>
+              <p class="quiz__offer-pitch" id="communityCopy"></p>
+              <p class="quiz__offer-what">A private WhatsApp group of women + allies building in AI. Daily wins, real feedback, brutally honest shipping accountability, and the occasional 2am 'wait look what I made.'</p>
+              <form class="quiz__optin" id="whatsappForm" novalidate>
+                <div class="quiz__optin-row">
+                  <label for="whatsappPhone" class="sr-only">WhatsApp number</label>
+                  <input type="tel" id="whatsappPhone" name="phone" placeholder="+1 (555) 555-5555" autocomplete="tel" required>
+                  <button class="btn btn--primary" type="submit">Request invite</button>
+                </div>
+                <p class="quiz__optin-note" id="whatsappNote">WhatsApp number. We'll text the invite link within 24 hours. Curated, not noisy.</p>
+              </form>
+            </section>
+
+            <!-- VIRALIZE WAVE CALL: GATED. Only renders for qualified leads. -->
+            <section class="quiz__offer quiz__offer--viralize" id="viralizeBlock" aria-labelledby="viralize-heading" hidden>
+              <p class="quiz__offer-eyebrow quiz__offer-eyebrow--gold">Selective · By invite</p>
+              <h3 class="quiz__offer-title" id="viralize-heading">You might be ready for a Wave Call.</h3>
+              <p class="quiz__offer-pitch" id="viralizePitch"></p>
+              <p class="quiz__offer-what"><strong>What's a Wave Call?</strong> A working session with Sarah Marilyn (founder of Viralize Technology) to map the organic growth infrastructure your thing actually needs. Reserved for founders + operators at funded startups, established companies, or with a live product ready to scale. If we're not a fit, she'll say so directly.</p>
+              <div class="quiz__offer-row">
+                <a class="btn btn--primary" href="https://calendar.app.google/Y9U8WAT75nwVpwgJ8" target="_blank" rel="noopener noreferrer">Book a Wave Call →</a>
+                <a class="btn btn--outline" href="https://viralizetechnology.com/" target="_blank" rel="noopener noreferrer">Or take the Wave Quiz first</a>
+              </div>
+            </section>
+
             <div class="quiz__cta">
-              <a href="./#tickets" class="btn btn--primary btn--lg">Grab a ticket → June 1</a>
               <button class="btn btn--outline" id="quizRestart" type="button">Retake quiz</button>
+              <a href="./" class="btn btn--ghost">← Back to HGVC</a>
             </div>
           </div>
 
