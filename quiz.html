@@ -6,10 +6,17 @@
   <title>What Kind of Hot Girl Vibe Coder Are You? — HGVC Quiz</title>
   <meta name="description" content="What kind of Hot Girl Vibe Coder are you? Eight questions, four archetypes, one screenshot you'll actually want to share. Find out who you are when you build.">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="What Kind of Hot Girl Vibe Coder Are You?">
-  <meta property="og:description" content="Find your archetype. Build your night. Ship your thing. Take the HGVC quiz.">
+  <!-- Open Graph - default values; JS swaps per-archetype when ?result= is present -->
+  <meta property="og:title" id="ogTitle" content="What Kind of Hot Girl Vibe Coder Are You?">
+  <meta property="og:description" id="ogDesc" content="Find your archetype. Build your night. Ship your thing. Take the HGVC quiz.">
   <meta property="og:type" content="website">
+  <meta property="og:image" id="ogImage" content="./assets/archetypes/og_visionary.png">
+  <meta property="og:image:width" content="1456">
+  <meta property="og:image:height" content="816">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="twTitle" content="What Kind of Hot Girl Vibe Coder Are You?">
+  <meta name="twitter:description" id="twDesc" content="Find your archetype. Build your night. Ship your thing.">
+  <meta name="twitter:image" id="twImage" content="./assets/archetypes/og_visionary.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,6 +120,9 @@
           <!-- RESULT STATE -->
           <div class="quiz__result" data-screen="result" hidden>
             <p class="section__label" id="resultLabel">Your Archetype</p>
+            <figure class="quiz__portrait" id="resultPortraitWrap">
+              <img class="quiz__portrait-img" id="resultPortrait" src="./assets/archetypes/archetype_visionary.png" alt="" loading="eager" decoding="async">
+            </figure>
             <h2 class="quiz__result-name" id="resultName"></h2>
             <p class="quiz__result-tag" id="resultTag"></p>
             <p class="quiz__result-desc" id="resultDesc"></p>
@@ -165,10 +175,15 @@
                 <div class="quiz__optin-row">
                   <label for="whatsappPhone" class="sr-only">WhatsApp number</label>
                   <input type="tel" id="whatsappPhone" name="phone" placeholder="+1 (555) 555-5555" autocomplete="tel" required>
-                  <button class="btn btn--primary" type="submit">Request invite</button>
+                  <button class="btn btn--primary" type="submit">Get the invite link</button>
                 </div>
-                <p class="quiz__optin-note" id="whatsappNote">WhatsApp number. We'll text the invite link within 24 hours. Curated, not noisy.</p>
+                <p class="quiz__optin-note" id="whatsappNote">Drop your WhatsApp number — you'll get the group invite link the second you submit.</p>
               </form>
+              <div class="quiz__optin-success" id="whatsappSuccess" hidden>
+                <p class="quiz__optin-success-eyebrow">You're in.</p>
+                <p class="quiz__optin-success-copy">Tap below to join the HGVC Inner Circle WhatsApp group. See you in there.</p>
+                <a class="btn btn--primary btn--lg" id="whatsappInvite" href="#" target="_blank" rel="noopener noreferrer">Open WhatsApp group →</a>
+              </div>
             </section>
 
             <!-- VIRALIZE WAVE CALL: GATED. Only renders for qualified leads. -->

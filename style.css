@@ -1658,6 +1658,34 @@
   text-transform: uppercase;
 }
 
+/* --- Result portrait --- */
+.quiz__portrait {
+  margin: 0 0 var(--space-6);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  max-width: 360px;
+  aspect-ratio: 3 / 4;
+  box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.4);
+}
+
+.quiz__portrait-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 720px) {
+  .quiz__portrait {
+    max-width: 320px;
+    float: right;
+    margin: 0 0 var(--space-5) var(--space-8);
+    shape-outside: margin-box;
+  }
+}
+
 /* --- Result --- */
 .quiz__result-name {
   font-family: var(--font-display);
@@ -1745,7 +1773,8 @@
   }
 }
 
-.quiz__optin input[type="email"] {
+.quiz__optin input[type="email"],
+.quiz__optin input[type="tel"] {
   background: var(--color-bg);
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-sm);
@@ -1753,12 +1782,44 @@
   color: var(--color-text);
   font-size: var(--text-base);
   width: 100%;
+  font-family: inherit;
 }
 
-.quiz__optin input[type="email"]:focus {
+.quiz__optin input[type="email"]:focus,
+.quiz__optin input[type="tel"]:focus {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-color: var(--color-primary);
+}
+
+/* Success state after WhatsApp submit */
+.quiz__optin-success {
+  margin-top: var(--space-4);
+  padding: var(--space-5);
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.12), rgba(37, 211, 102, 0.04));
+  border: 1px solid rgba(37, 211, 102, 0.45);
+  border-radius: var(--radius-md);
+  text-align: center;
+  animation: hgvc-pop 0.36s ease-out;
+}
+
+.quiz__optin-success-eyebrow {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-xl);
+  color: #25D366;
+  margin-bottom: var(--space-2);
+}
+
+.quiz__optin-success-copy {
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-4);
+}
+
+@keyframes hgvc-pop {
+  0% { opacity: 0; transform: translateY(8px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .quiz__optin-note {

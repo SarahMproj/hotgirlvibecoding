@@ -1,7 +1,25 @@
-// HGVC ARCHETYPE QUIZ — v2
+// HGVC ARCHETYPE QUIZ — v3
 // Methodology: The Viral Archetype Funnel (Sarah Marilyn)
+//
+// v3 adds: per-archetype portraits + OG share cards, WhatsApp invite reveal flow,
+//          and anonymized archetype distribution tracking for PR data.
 (function () {
   'use strict';
+
+  // ============================
+  // CONFIG — wire these to real services
+  // ============================
+  // Formspree endpoint for WhatsApp signups (captures phone + archetype + qual)
+  // TODO: replace with real Formspree endpoint after creating form at formspree.io
+  const WHATSAPP_FORM_ENDPOINT = 'https://formspree.io/f/REPLACE_ME_WHATSAPP';
+
+  // Formspree endpoint for anonymized distribution tracking (NO phone, NO PII)
+  // TODO: replace with real Formspree endpoint after creating form at formspree.io
+  const TRACKING_ENDPOINT = 'https://formspree.io/f/REPLACE_ME_TRACKING';
+
+  // Public WhatsApp group invite link (chat.whatsapp.com/...)
+  // TODO: create group in WhatsApp, get invite link, paste here
+  const WHATSAPP_GROUP_INVITE = 'https://chat.whatsapp.com/REPLACE_ME_INVITE_CODE';
 
   // ============================
   // ARCHETYPES (4 personality types)
@@ -119,6 +137,8 @@
     V: {
       name: "The Visionary Founder",
       tag: "You don't build features. You build futures.",
+      portrait: './assets/archetypes/archetype_visionary.png',
+      ogImage: './assets/archetypes/og_visionary.png',
       desc: "You walk in with a story and leave with a team. You can describe a product so clearly that other people start building it for you. Vibe coding isn't your end goal — it's how you finally get the thing out of your head and into the world fast enough to matter.",
       power: "Magnetic clarity. You make people believe.",
       gift: "You see the company three years out, and you can describe it like it already exists.",
@@ -132,6 +152,8 @@
     A: {
       name: "The Aesthetic Engineer",
       tag: "If it's not beautiful, it's not shipped.",
+      portrait: './assets/archetypes/archetype_aesthetic.png',
+      ogImage: './assets/archetypes/og_aesthetic.png',
       desc: "You believe taste is a feature. Your products feel different the second someone opens them — the spacing, the type, the micro-interactions. Vibe coding finally lets you ship as fast as you can design, and that's changing what's even possible.",
       power: "Taste at velocity. You make tools people want to touch.",
       gift: "You can tell within 3 seconds why a product feels cheap. That's a superpower most VCs can't even articulate.",
@@ -145,6 +167,8 @@
     C: {
       name: "The Chaos Shipper",
       tag: "Done is hotter than perfect.",
+      portrait: './assets/archetypes/archetype_chaos.png',
+      ogImage: './assets/archetypes/og_chaos.png',
       desc: "You ship. You break. You ship again. While other people are still wireframing, you've already deployed three things, killed two, and accidentally invented the fourth. Vibe coding was made for you — you were doing this energy before it had a name.",
       power: "Velocity. You finish things other people only talk about.",
       gift: "You have a higher tolerance for ugly-but-working than 99% of people. That tolerance is what lets you actually find product-market fit.",
@@ -158,6 +182,8 @@
     S: {
       name: "The Strategist",
       tag: "Every line of code is a chess move.",
+      portrait: './assets/archetypes/archetype_strategist.png',
+      ogImage: './assets/archetypes/og_strategist.png',
       desc: "You don't build to build. You build because you saw the angle nobody else did. You're quietly mapping the market while everyone else is fighting over the hype. Vibe coding lets you test a thesis in hours instead of months — and that changes the game entirely.",
       power: "Pattern recognition. You see the move three steps ahead.",
       gift: "You can tell which trends are going to be infrastructure and which are going to be cringe in 18 months. That's worth a lot of money to the right people.",
@@ -214,11 +240,24 @@
     lovableProject: $('lovableProject'),
     lovableCta: $('lovableCta'),
 
+    // Result portrait
+    resultPortrait: $('resultPortrait'),
+
+    // OG meta tags (dynamic)
+    ogImage: $('ogImage'),
+    ogTitle: $('ogTitle'),
+    ogDesc: $('ogDesc'),
+    twImage: $('twImage'),
+    twTitle: $('twTitle'),
+    twDesc: $('twDesc'),
+
     // Community block
     communityCopy: $('communityCopy'),
     whatsappForm: $('whatsappForm'),
     whatsappPhone: $('whatsappPhone'),
     whatsappNote: $('whatsappNote'),
+    whatsappSuccess: $('whatsappSuccess'),
+    whatsappInvite: $('whatsappInvite'),
 
     // Viralize block (gated)
     viralizeBlock: $('viralizeBlock'),
@@ -337,12 +376,74 @@
     return realStage && seriousGoal && ready;
   }
 
+  // ============================
+  // Apply archetype visuals: portrait img + OG/Twitter meta tags
+  // Called by both finish() (real completion) and renderDeepLinkResult() (?result=)
+  // ============================
+  function applyArchetypeVisuals(key) {
+    const arc = ARCHETYPES[key];
+    if (!arc) return;
+
+    // Portrait
+    if (els.resultPortrait) {
+      els.resultPortrait.src = arc.portrait;
+      els.resultPortrait.alt = `Illustrated portrait — ${arc.name}`;
+    }
+
+    // Dynamic OG / Twitter meta (helps client-side-aware crawlers + shows correct preview on re-share)
+    const shareTitle = `I'm ${arc.name} — ${arc.tag}`;
+    const shareDesc = arc.power;
+    // Use absolute URL for OG image so social scrapers can resolve it
+    const absOg = new URL(arc.ogImage, window.location.href).href;
+    if (els.ogImage) els.ogImage.setAttribute('content', absOg);
+    if (els.ogTitle) els.ogTitle.setAttribute('content', shareTitle);
+    if (els.ogDesc) els.ogDesc.setAttribute('content', shareDesc);
+    if (els.twImage) els.twImage.setAttribute('content', absOg);
+    if (els.twTitle) els.twTitle.setAttribute('content', shareTitle);
+    if (els.twDesc) els.twDesc.setAttribute('content', shareDesc);
+  }
+
+  // ============================
+  // Fire-and-forget anonymized distribution tracking
+  // Captures: archetype + qual signals. NO phone, NO PII.
+  // Powers the PR angle: 'X% of women in AI identify as Chaos Shippers' etc.
+  // ============================
+  function trackArchetype(key, source) {
+    if (!TRACKING_ENDPOINT || TRACKING_ENDPOINT.indexOf('REPLACE_ME') !== -1) return;
+    try {
+      const payload = {
+        archetype: key,
+        archetype_name: ARCHETYPES[key] && ARCHETYPES[key].name,
+        source: source || 'quiz_complete',  // 'quiz_complete' vs 'deep_link'
+        stage: state.qual.stage || null,
+        goal: state.qual.goal || null,
+        marketing_ready: state.qual.marketing_ready || null,
+        scores: state.scores,
+        referrer: document.referrer || null,
+        at: new Date().toISOString()
+      };
+      // Use sendBeacon if available (won't block / survives page unload)
+      if (navigator.sendBeacon) {
+        const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+        navigator.sendBeacon(TRACKING_ENDPOINT, blob);
+      } else {
+        fetch(TRACKING_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          keepalive: true
+        }).catch(() => {});
+      }
+    } catch (_) {}
+  }
+
   function finish() {
     tally();
     const key = winner();
     const arc = ARCHETYPES[key];
 
     els.progressBar.style.width = '100%';
+    applyArchetypeVisuals(key);
     els.resultName.textContent = arc.name;
     els.resultTag.textContent = arc.tag;
     els.resultDesc.textContent = arc.desc;
@@ -379,6 +480,9 @@
       window.history.replaceState({}, '', url);
     } catch (_) {}
 
+    // Anonymized distribution tracking for PR angle
+    trackArchetype(key, 'quiz_complete');
+
     show('result');
   }
 
@@ -398,6 +502,7 @@
 
   // ============================
   // WHATSAPP / COMMUNITY CAPTURE
+  // Submit phone to Formspree, then reveal the public group invite link.
   // ============================
   function handleWhatsapp(e) {
     e.preventDefault();
@@ -410,25 +515,57 @@
       return;
     }
 
-    // Capture locally — wire to a real endpoint (Formspree, Make, Zapier, or WhatsApp Business API) later.
+    const submitBtn = els.whatsappForm.querySelector('button[type="submit"]');
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    const archetype = winner();
+    const payload = {
+      phone: phone,
+      archetype: archetype,
+      archetype_name: ARCHETYPES[archetype] && ARCHETYPES[archetype].name,
+      stage: state.qual.stage || null,
+      goal: state.qual.goal || null,
+      marketing_ready: state.qual.marketing_ready || null,
+      source: 'hgvc_quiz',
+      at: new Date().toISOString()
+    };
+
+    // Always keep a local backup so nothing is ever lost
     try {
       const captured = JSON.parse(localStorage.getItem('hgvc_circle_signups') || '[]');
-      captured.push({
-        phone,
-        archetype: winner(),
-        qual: state.qual,
-        at: new Date().toISOString()
-      });
+      captured.push(payload);
       localStorage.setItem('hgvc_circle_signups', JSON.stringify(captured));
     } catch (_) {}
 
-    els.whatsappForm.classList.add('is-submitted');
-    els.whatsappNote.textContent = "You're on the list. We'll text you the invite within 24 hours.";
-    els.whatsappNote.style.color = 'var(--color-gold)';
-    els.whatsappPhone.disabled = true;
-    const submitBtn = els.whatsappForm.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    submitBtn.textContent = "You're in ✓";
+    const revealInvite = () => {
+      els.whatsappForm.hidden = true;
+      els.whatsappSuccess.hidden = false;
+      els.whatsappInvite.href = WHATSAPP_GROUP_INVITE;
+      // Scroll the success block into view
+      try { els.whatsappSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (_) {}
+    };
+
+    // If endpoint isn't wired yet, still reveal the invite (local backup is captured)
+    if (!WHATSAPP_FORM_ENDPOINT || WHATSAPP_FORM_ENDPOINT.indexOf('REPLACE_ME') !== -1) {
+      revealInvite();
+      return;
+    }
+
+    fetch(WHATSAPP_FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Network');
+        revealInvite();
+      })
+      .catch(() => {
+        // Still reveal the invite — we have the local backup, don't punish the user for a network blip
+        revealInvite();
+      });
   }
 
   // ============================
@@ -461,6 +598,7 @@
   // ============================
   function renderDeepLinkResult(key) {
     const arc = ARCHETYPES[key];
+    applyArchetypeVisuals(key);
     els.resultName.textContent = arc.name;
     els.resultTag.textContent = arc.tag;
     els.resultDesc.textContent = arc.desc;
@@ -476,6 +614,8 @@
     const tweet = `I'm ${arc.name} — ${arc.tag} 💅\n\nWhat kind of Hot Girl Vibe Coder are you?`;
     els.shareTwitter.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}&url=${encodeURIComponent(shareUrl)}`;
     els.progressBar.style.width = '100%';
+    // Track deep-link views separately so we can distinguish viral reach from quiz takers
+    trackArchetype(key, 'deep_link');
     show('result');
   }
 
