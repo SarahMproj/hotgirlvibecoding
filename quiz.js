@@ -7,19 +7,11 @@
   'use strict';
 
   // ============================
-  // CONFIG — wire these to real services
+  // CONFIG — own serverless endpoints (Vercel + KV)
   // ============================
-  // Formspree endpoint for WhatsApp signups (captures phone + archetype + qual)
-  // TODO: replace with real Formspree endpoint after creating form at formspree.io
-  const WHATSAPP_FORM_ENDPOINT = 'https://formspree.io/f/REPLACE_ME_WHATSAPP';
-
-  // Formspree endpoint for anonymized distribution tracking (NO phone, NO PII)
-  // TODO: replace with real Formspree endpoint after creating form at formspree.io
-  const TRACKING_ENDPOINT = 'https://formspree.io/f/REPLACE_ME_TRACKING';
-
-  // Public WhatsApp group invite link (chat.whatsapp.com/...)
-  // TODO: create group in WhatsApp, get invite link, paste here
-  const WHATSAPP_GROUP_INVITE = 'https://chat.whatsapp.com/REPLACE_ME_INVITE_CODE';
+  const WHATSAPP_FORM_ENDPOINT = '/api/signup';
+  const TRACKING_ENDPOINT = '/api/track';
+  const WHATSAPP_GROUP_INVITE = 'https://chat.whatsapp.com/EDi39ELb5aOIo2cKwQE0Yd';
 
   // ============================
   // ARCHETYPES (4 personality types)
@@ -409,7 +401,7 @@
   // Powers the PR angle: 'X% of women in AI identify as Chaos Shippers' etc.
   // ============================
   function trackArchetype(key, source) {
-    if (!TRACKING_ENDPOINT || TRACKING_ENDPOINT.indexOf('REPLACE_ME') !== -1) return;
+    if (!TRACKING_ENDPOINT) return;
     try {
       const payload = {
         archetype: key,
@@ -547,8 +539,7 @@
       try { els.whatsappSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (_) {}
     };
 
-    // If endpoint isn't wired yet, still reveal the invite (local backup is captured)
-    if (!WHATSAPP_FORM_ENDPOINT || WHATSAPP_FORM_ENDPOINT.indexOf('REPLACE_ME') !== -1) {
+    if (!WHATSAPP_FORM_ENDPOINT) {
       revealInvite();
       return;
     }
