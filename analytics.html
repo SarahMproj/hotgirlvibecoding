@@ -54,10 +54,11 @@
   .card h2 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-bottom: 20px; }
 
   /* Bar chart (hourly) */
-  .chart { display: flex; align-items: flex-end; gap: 4px; height: 180px; }
-  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; min-width: 0; }
-  .bar { width: 100%; max-width: 26px; background: linear-gradient(180deg, var(--primary), var(--primary-soft)); border-radius: 4px 4px 0 0; transition: height .6s cubic-bezier(.2,.7,.2,1); min-height: 2px; }
-  .bar-lbl { font-size: 9px; color: var(--text-faint); white-space: nowrap; transform: rotate(-45deg); transform-origin: center; height: 14px; }
+  .chart { display: flex; align-items: flex-end; gap: 4px; height: 200px; padding-bottom: 22px; }
+  .bar-col { flex: 1; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0; position: relative; }
+  .bar-wrap { flex: 1; width: 100%; display: flex; align-items: flex-end; justify-content: center; }
+  .bar { width: 100%; max-width: 26px; background: linear-gradient(180deg, var(--primary), var(--primary-soft)); border-radius: 4px 4px 0 0; transition: height .6s cubic-bezier(.2,.7,.2,1); min-height: 3px; }
+  .bar-lbl { font-size: 9px; color: var(--text-faint); white-space: nowrap; position: absolute; bottom: -18px; }
   .empty-chart { color: var(--text-faint); font-size: 14px; display: flex; align-items: center; justify-content: center; height: 180px; }
 
   /* Platform breakdown */
@@ -164,11 +165,11 @@
     el.className = 'chart';
     var max = Math.max.apply(null, hourly.map(function(h){ return h.n; }));
     el.innerHTML = hourly.map(function(h){
-      var pct = max ? Math.round(h.n/max*100) : 0;
+      var pct = max ? Math.max(3, Math.round(h.n/max*100)) : 3;
       var hr = h.t.slice(11,13);
       var label = (parseInt(hr,10) % 12 || 12) + (parseInt(hr,10) < 12 ? 'a' : 'p');
       return '<div class="bar-col" title="'+h.t+' — '+h.n+' scans">' +
-        '<div class="bar" style="height:'+pct+'%"></div>' +
+        '<div class="bar-wrap"><div class="bar" style="height:'+pct+'%"></div></div>' +
         '<div class="bar-lbl">'+label+'</div>' +
       '</div>';
     }).join('');
