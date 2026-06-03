@@ -9,28 +9,14 @@ import { getSupabase } from './_supabase.js';
 
 export const config = { runtime: 'nodejs' };
 
-// Destinations
-const APP_STORE_IOS  = 'https://apps.apple.com/us/app/perplexity-ai-search-chat/id1668000334';
-const PLAY_ANDROID   = 'https://play.google.com/store/apps/details?id=ai.perplexity.app.android';
-const DESKTOP_TARGET = 'https://www.perplexity.ai/platforms';
+// Single destination — Perplexity's official mobile landing page (serves iOS + Android).
+const MOBILE_TARGET = 'https://www.perplexity.ai/mobile';
 
 function detectPlatform(ua = '') {
   if (/android/i.test(ua)) return 'android';
   if (/iphone|ipad|ipod/i.test(ua)) return 'ios';
   if (/macintosh|windows|linux|cros/i.test(ua)) return 'desktop';
   return 'other';
-}
-
-// Forward UTM/campaign params into the store URLs so install-side attribution
-// also has a chance (Google passes "referrer"; Apple uses ct/pt).
-function withPlayUtm(url, utm) {
-  const ref = encodeURIComponent(
-    `utm_source=${utm.source}&utm_medium=${utm.medium}&utm_campaign=${utm.campaign}`
-  );
-  return `${url}&referrer=${ref}`;
-}
-function withAppleUtm(url, utm) {
-  return `${url}?ct=${encodeURIComponent(utm.campaign)}&pt=${encodeURIComponent(utm.source)}&mt=8`;
 }
 
 export default async function handler(req, res) {
@@ -68,11 +54,8 @@ export default async function handler(req, res) {
     console.error('[perplexity] scan log failed:', err);
   }
 
-  // Pick destination.
-  let target;
-  if (platform === 'ios') target = withAppleUtm(APP_STORE_IOS, utm);
-  else if (platform === 'android') target = withPlayUtm(PLAY_ANDROID, utm);
-  else target = DESKTOP_TARGET;
+  // All devices go to Perplexity's mobile landing page (still log the platform).
+  const target = MOBILE_TARGET;
 
   // No-cache so every scan re-hits this function and gets counted.
   res.setHeader('Cache-Control', 'no-store, max-age=0');
