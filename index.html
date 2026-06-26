@@ -3,24 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hot Girl Vibe Coding (feat. Baddie Li) — NY Tech Week 2026</title>
-  <meta name="description" content="A high-energy AI builder experience for women and allies. Learn vibe coding, build real products, and ship in one night. June 1–7, 2026 during NY Tech Week.">
-  
+  <title>Hot Girl Vibe Coding — The AI Builder Tour for Women</title>
+  <meta name="description" content="A national AI builder tour helping women founders, creators, and operators go from AI-curious to actively building. NYC pilot complete. Columbus, LA, SF, Austin, and Miami next.">
+
   <!-- Open Graph -->
-  <meta property="og:title" content="Hot Girl Vibe Coding (feat. Baddie Li) — NY Tech Week 2026">
-  <meta property="og:description" content="A high-energy AI builder experience for women and allies. Go from idea to execution in one night.">
+  <meta property="og:title" content="Hot Girl Vibe Coding — The AI Builder Tour for Women">
+  <meta property="og:description" content="NYC was the pilot. The tour is the system. Less panel, more product.">
   <meta property="og:type" content="website">
-  
+  <meta property="og:image" content="./assets/video/baddie-li-poster.jpg">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300..700&display=swap" rel="stylesheet">
-  
+
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
-  
+
   <link rel="stylesheet" href="./base.css">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./tour.css">
 </head>
 <body>
   <!-- Skip to content -->
@@ -40,20 +42,19 @@
         </svg>
         <span class="header__logo-text">HGVC</span>
       </a>
-      
+
       <nav class="header__nav" aria-label="Main navigation">
         <ul role="list">
-          <li><a href="#concept">Concept</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#featuring">Featuring</a></li>
-          <li><a href="#build">Build</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#tour">Tour</a></li>
+          <li><a href="#sponsor">Sponsor</a></li>
+          <li><a href="#recap">Recap</a></li>
           <li><a href="./quiz.html">Quiz</a></li>
-          <li><a href="#tickets">Tickets</a></li>
-          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#bring-it">Bring HGVC</a></li>
         </ul>
       </nav>
 
-      <a href="#tickets" class="header__cta">Get Tickets</a>
+      <a href="#sponsor" class="header__cta">Sponsor the Tour</a>
 
       <button class="header__mobile-toggle" aria-label="Open menu" aria-expanded="false">
         <span></span>
@@ -67,266 +68,323 @@
   <div class="mobile-nav" id="mobileNav" aria-hidden="true">
     <nav aria-label="Mobile navigation">
       <ul role="list">
-        <li><a href="#concept">Concept</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#featuring">Featuring</a></li>
-        <li><a href="#build">Build</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#tour">Tour</a></li>
+        <li><a href="#sponsor">Sponsor</a></li>
+        <li><a href="#recap">Recap</a></li>
         <li><a href="./quiz.html">Quiz</a></li>
-        <li><a href="#tickets">Tickets</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#bring-it">Bring HGVC</a></li>
       </ul>
-      <a href="#tickets" class="btn btn--primary btn--full">Get Your Ticket</a>
+      <a href="#sponsor" class="btn btn--primary btn--full">Sponsor the Tour</a>
     </nav>
   </div>
 
   <main id="main">
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-heading">
-      <div class="hero__bg-grid" aria-hidden="true"></div>
-      <div class="hero__portrait" aria-hidden="true">
-        <img src="./assets/baddie-li-hero.jpg" alt="" class="hero__portrait-img">
+    <!-- HERO with video -->
+    <section class="hero hero--video" aria-labelledby="hero-heading">
+      <div class="hero__video-wrap" aria-hidden="true">
+        <video
+          class="hero__video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="./assets/video/baddie-li-poster.jpg"
+        >
+          <source src="./assets/video/baddie-li-hero-720.mp4" type="video/mp4" media="(max-width: 900px)">
+          <source src="./assets/video/baddie-li-hero-1080.mp4" type="video/mp4">
+        </video>
+        <div class="hero__video-overlay"></div>
       </div>
-      <div class="hero__accent-line" aria-hidden="true"></div>
-      <div class="hero__neon-streaks" aria-hidden="true"></div>
-      <div class="hero__content">
-        <div class="hero__techweek fade-in">
-          <span class="hero__techweek-text">Official</span>
-          <img src="./assets/techweek-ny.svg" alt="NY Tech Week" class="hero__techweek-logo">
-          <span class="hero__techweek-text">Event</span>
-        </div>
-        <h1 id="hero-heading" class="hero__title fade-in">
-          <span class="hero__title-line">HOT GIRL</span>
-          <span class="hero__title-line hero__title-line--accent">VIBE CODING</span>
-          <span class="hero__title-feat">(feat. Baddie Li)</span>
+
+      <div class="hero__content hero__content--video">
+        <p class="hero__eyebrow fade-in">A16Z VIBE CODING GRANT · NYC PILOT COMPLETE</p>
+        <h1 id="hero-heading" class="hero__title hero__title--tour fade-in">
+          <span class="hero__title-line">THE AI BUILDER TOUR</span>
+          <span class="hero__title-line hero__title-line--accent">FOR WOMEN</span>
         </h1>
-        <div class="hero__grant fade-in">
-          <span class="hero__grant-text">Awarded the</span>
-          <span class="hero__grant-a16z">a16z</span>
-          <span class="hero__grant-text">Vibe Coding Grant</span>
+        <p class="hero__subtitle hero__subtitle--tour fade-in">
+          Hot Girl Vibe Coding turns AI adoption into a social, cultural, and creative experience — bringing women founders, creators, operators, and builders into hands-on AI building, city by city.
+        </p>
+        <div class="hero__cta-group fade-in">
+          <a href="#sponsor" class="btn btn--primary btn--lg">Sponsor the Tour</a>
+          <a href="#bring-it" class="btn btn--outline btn--lg">Bring HGVC to Your City</a>
         </div>
-        <p class="hero__subtitle fade-in">A high-energy AI builder experience for women and allies</p>
-        <div class="hero__meta fade-in">
-          <span class="hero__date">June 1 &ndash; 7, 2026</span>
-          <span class="hero__divider" aria-hidden="true">/</span>
-          <span class="hero__location">NY Tech Week</span>
-          <span class="hero__divider" aria-hidden="true">/</span>
-          <span class="hero__location">Manhattan, New York City</span>
-        </div>
-        <a href="#tickets" class="btn btn--primary btn--lg hero__cta fade-in">Get Your Ticket</a>
-      </div>
-      <div class="hero__scroll-hint fade-in" aria-hidden="true">
-        <span>Scroll</span>
-        <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><path d="M8 4v16m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="hero__credibility fade-in">
+          Launched at NY Tech Week 2026 · 150+ women builders · Keynote by Lisa Carmen Wang (Baddie Li)
+        </p>
       </div>
     </section>
 
-    <!-- THE CONCEPT -->
-    <section class="section concept" id="concept" aria-labelledby="concept-heading">
+    <!-- ABOUT — what it is -->
+    <section class="section about-tour" id="about" aria-labelledby="about-heading">
       <div class="container">
         <div class="section__header fade-in">
-          <p class="section__label">The Concept</p>
-          <h2 id="concept-heading" class="section__title">Go from idea to execution<br>in one night.</h2>
-          <p class="section__desc">An identity-driven activation where women learn vibe coding and ship real products &mdash; apps, prototypes, content &mdash; in a single evening. Less talk about AI. More building with it.</p>
+          <p class="section__label">What It Is</p>
+          <h2 id="about-heading" class="section__title">Not another women-in-tech panel.<br>A room full of women building.</h2>
+          <p class="section__desc">Hot Girl Vibe Coding turns AI adoption into a social, cultural, and creative experience. Each stop combines music, founder energy, creator culture, live demos, hands-on AI product building, and high-signal networking. Attendees don't just hear about the future of AI — they make something with it.</p>
         </div>
-        <div class="pillars">
-          <div class="pillar fade-in">
-            <span class="pillar__number">01</span>
-            <h3 class="pillar__title">Learn</h3>
-            <p class="pillar__desc">Vibe Coding 101 crash course. Understand the tools, the mindset, and the workflow before you start building.</p>
+
+        <div class="about-pillars fade-in">
+          <div class="about-pillar">
+            <span class="about-pillar__num">01</span>
+            <h3>Social, not isolated</h3>
+            <p>Building together, not coding alone.</p>
           </div>
-          <div class="pillar fade-in">
-            <span class="pillar__number">02</span>
-            <h3 class="pillar__title">Build</h3>
-            <p class="pillar__desc">Guided sprint from idea to prototype. You'll have mentors, templates, and the energy of a room full of builders.</p>
+          <div class="about-pillar">
+            <span class="about-pillar__num">02</span>
+            <h3>Stylish, not sterile</h3>
+            <p>Designed for the cultural moment, not the conference hall.</p>
           </div>
-          <div class="pillar fade-in">
-            <span class="pillar__number">03</span>
-            <h3 class="pillar__title">Ship</h3>
-            <p class="pillar__desc">Demo what you built, get feedback, launch. Walk out with something real you can show the world.</p>
+          <div class="about-pillar">
+            <span class="about-pillar__num">03</span>
+            <h3>Beginner-welcoming</h3>
+            <p>No gatekeeping. No jargon walls.</p>
+          </div>
+          <div class="about-pillar">
+            <span class="about-pillar__num">04</span>
+            <h3>Identity-driven</h3>
+            <p>For women who don't see themselves in standard "women in tech."</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- THE EXPERIENCE -->
-    <section class="section experience" id="experience" aria-labelledby="experience-heading">
+    <!-- RECAP — NYC proof -->
+    <section class="section recap" id="recap" aria-labelledby="recap-heading">
       <div class="container">
         <div class="section__header fade-in">
-          <p class="section__label">The Experience</p>
-          <h2 id="experience-heading" class="section__title">Five acts. One unforgettable night.</h2>
+          <p class="section__label">The Pilot</p>
+          <h2 id="recap-heading" class="section__title">150+ women builders.<br>One night. NY Tech Week.</h2>
+          <p class="section__desc">Hot Girl Vibe Coding launched as a breakout NY Tech Week activation on June 3 at Beatbox NYC — co-hosted with Frontier House and Eleven Wall Ventures. The response was immediate: this format needs to travel.</p>
         </div>
-        <div class="timeline">
-          <div class="timeline__item fade-in">
-            <div class="timeline__marker">
-              <span class="timeline__act">Act 1</span>
-            </div>
-            <div class="timeline__line"></div>
-            <div class="timeline__content">
-              <h3 class="timeline__title">Arrival</h3>
-              <p class="timeline__desc">Energy, networking, identity anchoring. Set your intention, meet your people, feel the room charge up.</p>
-            </div>
+
+        <div class="recap-grid fade-in">
+          <div class="recap-stat">
+            <span class="recap-stat__num">150+</span>
+            <span class="recap-stat__label">Women builders in the room</span>
           </div>
-          <div class="timeline__item fade-in">
-            <div class="timeline__marker">
-              <span class="timeline__act">Act 2</span>
-            </div>
-            <div class="timeline__line"></div>
-            <div class="timeline__content">
-              <h3 class="timeline__title">Ignition</h3>
-              <p class="timeline__desc">Keynote + performance by Baddie Li (Lisa Carmen Wang). The mindset shift that turns "I have an idea" into "I'm building it tonight."</p>
-            </div>
+          <div class="recap-stat">
+            <span class="recap-stat__num">a16z</span>
+            <span class="recap-stat__label">Vibe Coding Grant recipient</span>
           </div>
-          <div class="timeline__item fade-in">
-            <div class="timeline__marker">
-              <span class="timeline__act">Act 3</span>
-            </div>
-            <div class="timeline__line"></div>
-            <div class="timeline__content">
-              <h3 class="timeline__title">Activation</h3>
-              <p class="timeline__desc">Vibe Coding workshop + guided sprint. Hands on keyboards. Mentors circulating. Music playing. You're building.</p>
-            </div>
+          <div class="recap-stat">
+            <span class="recap-stat__num">2.3M</span>
+            <span class="recap-stat__label">Impressions on Sophia Amoruso's launch-week post (93% women)</span>
           </div>
-          <div class="timeline__item fade-in">
-            <div class="timeline__marker">
-              <span class="timeline__act">Act 4</span>
-            </div>
-            <div class="timeline__line"></div>
-            <div class="timeline__content">
-              <h3 class="timeline__title">Showcase</h3>
-              <p class="timeline__desc">Live demos + crowd voting. Show what you shipped. Get real feedback. Win prizes.</p>
-            </div>
-          </div>
-          <div class="timeline__item fade-in">
-            <div class="timeline__marker">
-              <span class="timeline__act">Act 5</span>
-            </div>
-            <div class="timeline__line"></div>
-            <div class="timeline__content">
-              <h3 class="timeline__title">Social</h3>
-              <p class="timeline__desc">Networking, drinks, content capture. Celebrate what you built. Make connections that last beyond tonight.</p>
-            </div>
+          <div class="recap-stat">
+            <span class="recap-stat__num">6</span>
+            <span class="recap-stat__label">Confirmed partners — a16z, Beatbox, Bad Bitch Empire, Big Kitty Labs, Frontier House, Eleven Wall</span>
           </div>
         </div>
+
+        <p class="recap-callout fade-in">
+          NYC was the spark. The tour is the system.
+        </p>
       </div>
     </section>
 
-    <!-- FEATURING -->
-    <section class="section featuring" id="featuring" aria-labelledby="featuring-heading">
+    <!-- TOUR — proposed cities -->
+    <section class="section tour" id="tour" aria-labelledby="tour-heading">
       <div class="container">
         <div class="section__header fade-in">
-          <p class="section__label">Featuring</p>
+          <p class="section__label">The Tour</p>
+          <h2 id="tour-heading" class="section__title">From NYC spark<br>to national tour.</h2>
+          <p class="section__desc">A multi-city AI builder activation bringing women into the AI economy through culture, community, and live product experimentation. We're evaluating city hosts, venue partners, tool partners, and community collaborators for each stop.</p>
         </div>
-        <div class="speaker fade-in">
-          <div class="speaker__hero-wrap">
-            <img src="./assets/baddie-li-speaker.jpg" alt="Baddie Li" class="speaker__photo" loading="lazy">
-            <div class="speaker__overlay-content">
-              <div class="speaker__name-block">
-                <h2 id="featuring-heading" class="speaker__name">Baddie Li</h2>
-                <p class="speaker__aka">Lisa Carmen Wang</p>
-              </div>
-              <div class="speaker__info">
-                <p class="speaker__role">Musical Artist &amp; Cultural Force</p>
-                <p class="speaker__role">Founder, Bad Bitch Empire</p>
-                <p class="speaker__role">Author, <em>The Bad Bitch Business Bible</em></p>
-                <p class="speaker__role">Forbes 30 Under 30</p>
-                <div class="speaker__divider" aria-hidden="true"></div>
-                <p class="speaker__bio">4x USA National Champion gymnast turned serial entrepreneur, rapper, and cultural force redefining feminine power. Baddie Li brings the energy, the performance, and the fire to help you unlock your builder identity.</p>
-              </div>
+
+        <div class="tour-cities fade-in">
+          <div class="tour-city tour-city--done">
+            <span class="tour-city__status">Pilot · Complete</span>
+            <h3>New York</h3>
+            <p>Tech Week anchor. June 3, 2026.</p>
+          </div>
+          <div class="tour-city">
+            <span class="tour-city__status">Next up</span>
+            <h3>Columbus</h3>
+            <p>Heartland ownership. Strategic differentiation.</p>
+          </div>
+          <div class="tour-city">
+            <span class="tour-city__status">Proposed</span>
+            <h3>Los Angeles</h3>
+            <p>Entertainment × creator × consumer.</p>
+          </div>
+          <div class="tour-city">
+            <span class="tour-city__status">Proposed</span>
+            <h3>San Francisco</h3>
+            <p>AI epicenter. Tool sponsor density.</p>
+          </div>
+          <div class="tour-city">
+            <span class="tour-city__status">Proposed</span>
+            <h3>Austin</h3>
+            <p>Founder + creator density. SXSW adjacency.</p>
+          </div>
+          <div class="tour-city">
+            <span class="tour-city__status">Proposed</span>
+            <h3>Miami</h3>
+            <p>Creator + consumer crossover.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPONSOR — three tiers -->
+    <section class="section sponsor" id="sponsor" aria-labelledby="sponsor-heading">
+      <div class="container">
+        <div class="section__header fade-in">
+          <p class="section__label">For Sponsors</p>
+          <h2 id="sponsor-heading" class="section__title">Sponsors don't need another logo placement.<br>They need cultural adoption.</h2>
+          <p class="section__desc">The next wave of AI adoption will not be won by technical demos alone. It will be won by tools, brands, and ecosystems that make AI feel accessible, aspirational, and immediately useful. Hot Girl Vibe Coding gives sponsors direct access to a highly influential audience of women who shape culture, launch products, and bring new technology into their networks.</p>
+        </div>
+
+        <div class="sponsor-value fade-in">
+          <p>What sponsors get:</p>
+          <ul>
+            <li>Direct reach to women founders, creators, operators, marketers, and emerging AI builders</li>
+            <li>Hands-on product trials, signups, demos, and tool usage during the event</li>
+            <li>Authentic social content and recap inventory generated around the brand</li>
+            <li>Trust with an audience under-served by traditional tech events</li>
+            <li>A differentiated cultural lane in the AI ecosystem</li>
+          </ul>
+        </div>
+
+        <div class="sponsor-tiers fade-in">
+          <article class="sponsor-tier">
+            <div class="sponsor-tier__header">
+              <h3 class="sponsor-tier__name">National Title Partner</h3>
+              <p class="sponsor-tier__price">$75K – $125K</p>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHAT YOU'LL BUILD -->
-    <section class="section build-section" id="build" aria-labelledby="build-heading">
-      <div class="container">
-        <div class="section__header fade-in">
-          <p class="section__label">What You'll Build</p>
-          <h2 id="build-heading" class="section__title">In one night, you'll go from<br>"I have an idea" to "I built that."</h2>
-        </div>
-        <div class="build-grid fade-in">
-          <div class="build-item">Landing pages</div>
-          <div class="build-item">AI-powered tools</div>
-          <div class="build-item">Content engines</div>
-          <div class="build-item">Personal brand sites</div>
-          <div class="build-item">Micro-SaaS prototypes</div>
-        </div>
-        <p class="build-note fade-in">No coding experience required. Just bring your laptop and your vision.</p>
-      </div>
-    </section>
-
-    <!-- QUIZ TEASER -->
-    <section class="section quiz-teaser" id="quiz" aria-labelledby="quiz-teaser-heading">
-      <div class="container">
-        <div class="quiz-teaser__card fade-in">
-          <div>
-            <p class="section__label">The Quiz</p>
-            <h2 id="quiz-teaser-heading" class="quiz-teaser__title">What kind of Hot Girl<br>Vibe Coder are you?</h2>
-            <p class="quiz-teaser__desc">Eight questions. Four archetypes. One screenshot you'll actually want to share. Find out who you are when you build — and what to do about it.</p>
-            <a href="./quiz.html" class="btn btn--primary btn--lg">Take the quiz →</a>
-          </div>
-          <div class="quiz-teaser__archetypes" aria-label="Possible archetypes">
-            <span class="quiz-teaser__chip quiz-teaser__chip--pink">The Visionary Founder</span>
-            <span class="quiz-teaser__chip quiz-teaser__chip--gold">The Aesthetic Engineer</span>
-            <span class="quiz-teaser__chip quiz-teaser__chip--pink">The Chaos Shipper</span>
-            <span class="quiz-teaser__chip quiz-teaser__chip--gold">The Strategist</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TICKETS -->
-    <section class="section tickets-section" id="tickets" aria-labelledby="tickets-heading">
-      <div class="container">
-        <div class="section__header fade-in">
-          <p class="section__label">Tickets</p>
-          <h2 id="tickets-heading" class="section__title">Claim your spot.</h2>
-        </div>
-        <div class="tickets-grid tickets-grid--two">
-          <div class="ticket ticket--featured fade-in">
-            <h3 class="ticket__tier">Standard</h3>
-            <div class="ticket__price">$15</div>
-            <ul class="ticket__perks" role="list">
-              <li>Full event access</li>
-              <li>Vibe Coding workshop</li>
-              <li>Complimentary drinks &amp; bites</li>
-              <li>Community access</li>
+            <p class="sponsor-tier__desc">For the brand that wants to own the full Hot Girl Vibe Coding tour.</p>
+            <ul class="sponsor-tier__list">
+              <li>Category exclusivity</li>
+              <li>Logo placement across all city pages and tour materials</li>
+              <li>Featured stage integration at every stop</li>
+              <li>Branded build challenge</li>
+              <li>Product onboarding moment</li>
+              <li>Social and content package + post-tour impact report</li>
+              <li>Optional co-branded educational resources</li>
             </ul>
-            <a href="https://buy.stripe.com/cNi6oH5GSf3v3Mq4LJ1sQ09" class="btn btn--primary btn--full" target="_blank" rel="noopener noreferrer">Claim Your Spot</a>
-          </div>
-          <div class="ticket fade-in">
-            <div class="ticket__badge ticket__badge--gold">VIP</div>
-            <h3 class="ticket__tier">VIP</h3>
-            <div class="ticket__price">$35</div>
-            <ul class="ticket__perks" role="list">
-              <li>Everything in Standard</li>
-              <li>Champagne toast</li>
-              <li>Photo op with Baddie Li</li>
-              <li>Front row seating</li>
-              <li>Exclusive VIP networking</li>
+          </article>
+
+          <article class="sponsor-tier sponsor-tier--featured">
+            <div class="sponsor-tier__badge">Most popular</div>
+            <div class="sponsor-tier__header">
+              <h3 class="sponsor-tier__name">City Presenting Partner</h3>
+              <p class="sponsor-tier__price">$10K – $25K per city</p>
+            </div>
+            <p class="sponsor-tier__desc">For brands, funds, ecosystem organizations, and local sponsors that want to own a city stop.</p>
+            <ul class="sponsor-tier__list">
+              <li>Presented-by naming for one city</li>
+              <li>Stage mention and sponsor activation</li>
+              <li>Logo placement on city materials</li>
+              <li>Local lead capture</li>
+              <li>Inclusion in recap content</li>
+              <li>VIP and community access</li>
             </ul>
-            <a href="https://buy.stripe.com/dRm5kD0my3kNdn02DB1sQ08" class="btn btn--outline btn--gold btn--full" target="_blank" rel="noopener noreferrer">Claim Your Spot</a>
-          </div>
+          </article>
+
+          <article class="sponsor-tier">
+            <div class="sponsor-tier__header">
+              <h3 class="sponsor-tier__name">Tool / Community Partner</h3>
+              <p class="sponsor-tier__price">In-kind or $2.5K – $7.5K</p>
+            </div>
+            <p class="sponsor-tier__desc">For platforms and partners that want direct adoption, creator content, or community visibility.</p>
+            <ul class="sponsor-tier__list">
+              <li>Product demo or resource integration</li>
+              <li>Attendee offer, credits, or giveaway</li>
+              <li>Logo placement</li>
+              <li>Community distribution</li>
+              <li>Recap inclusion</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="sponsor-cta fade-in">
+          <a href="mailto:sarahmarilynsocial@gmail.com?subject=HGVC%20Tour%20Sponsor%20Inquiry" class="btn btn--primary btn--lg">Request the Sponsor Deck</a>
         </div>
       </div>
     </section>
 
-    <!-- SPONSORS -->
+    <!-- AUDIENCE -->
+    <section class="section audience" id="audience" aria-labelledby="audience-heading">
+      <div class="container">
+        <div class="section__header fade-in">
+          <p class="section__label">The Audience</p>
+          <h2 id="audience-heading" class="section__title">A high-intent audience<br>at the intersection of AI, ambition, and culture.</h2>
+          <p class="section__desc">This is not an audience that just attends events. They post, build, invite friends, start companies, adopt tools, influence teams, and create cultural momentum.</p>
+        </div>
+
+        <div class="audience-grid fade-in">
+          <div class="audience-item">Women founders and startup operators</div>
+          <div class="audience-item">Creators and community builders</div>
+          <div class="audience-item">Marketing, growth, and brand leaders</div>
+          <div class="audience-item">Students and early-career builders</div>
+          <div class="audience-item">AI-curious professionals</div>
+          <div class="audience-item">Investors, mentors, and ecosystem leaders</div>
+          <div class="audience-item">Tools-first entrepreneurs</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMAT — run of show -->
+    <section class="section format" id="format" aria-labelledby="format-heading">
+      <div class="container">
+        <div class="section__header fade-in">
+          <p class="section__label">What Happens at Each Stop</p>
+          <h2 id="format-heading" class="section__title">A repeatable activation<br>designed for energy and outcomes.</h2>
+        </div>
+
+        <ol class="format-flow fade-in">
+          <li class="format-step">
+            <span class="format-step__num">01</span>
+            <h3>Arrival + Networking</h3>
+            <p>Music, drinks, photos, community energy, sponsor visibility.</p>
+          </li>
+          <li class="format-step">
+            <span class="format-step__num">02</span>
+            <h3>AI Pep Talk / Keynote</h3>
+            <p>A high-energy opening that reframes AI building as accessible, creative, and empowering.</p>
+          </li>
+          <li class="format-step">
+            <span class="format-step__num">03</span>
+            <h3>Live Tool Demo</h3>
+            <p>A sponsor-integrated demo showing attendees how to go from idea to working product.</p>
+          </li>
+          <li class="format-step">
+            <span class="format-step__num">04</span>
+            <h3>Vibe Coding Sprint</h3>
+            <p>Attendees build their first landing page, app, prototype, quiz, AI workflow, or product concept.</p>
+          </li>
+          <li class="format-step">
+            <span class="format-step__num">05</span>
+            <h3>Showcase + Social Moment</h3>
+            <p>Select attendees share what they built. The room becomes the content engine.</p>
+          </li>
+          <li class="format-step">
+            <span class="format-step__num">06</span>
+            <h3>Community Follow-Up</h3>
+            <p>Post-event resources, sponsor offers, tool credits, replays, and next-step programming.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- PARTNERS -->
     <section class="section sponsors-section" aria-labelledby="sponsors-heading">
       <div class="container">
         <div class="section__header fade-in">
-          <p class="section__label">Backed By</p>
-          <h2 id="sponsors-heading" class="section__title">Our Partners</h2>
-          <p class="section__desc">Interested in sponsoring? <a href="mailto:sarahmarilynsocial@gmail.com" target="_blank" rel="noopener noreferrer">Get in touch</a>.</p>
+          <p class="section__label">Pilot Partners</p>
+          <h2 id="sponsors-heading" class="section__title">The partners who helped<br>launch the tour.</h2>
         </div>
-        <div class="sponsor-logos sponsor-logos--real fade-in">
+
+        <div class="sponsor-logos fade-in">
           <div class="sponsor-logo">
-            <img src="./assets/a16z-logo.svg" alt="a16z" class="sponsor-logo__img" loading="lazy">
+            <img src="./assets/a16z-logo.svg" alt="a16z" class="sponsor-logo__img sponsor-logo__img--a16z" loading="lazy">
             <span class="sponsor-logo__label">Grant Sponsor</span>
           </div>
           <div class="sponsor-logo">
-            <img src="./assets/techweek-ny.svg" alt="NY Tech Week" class="sponsor-logo__img" loading="lazy">
+            <img src="./assets/techweek-ny.svg" alt="NY Tech Week" class="sponsor-logo__img sponsor-logo__img--techweek" loading="lazy">
             <span class="sponsor-logo__label">Official Event</span>
           </div>
           <div class="sponsor-logo">
@@ -336,6 +394,93 @@
           <div class="sponsor-logo">
             <img src="./assets/big-kitty-labs-logo.svg" alt="Big Kitty Labs" class="sponsor-logo__img" loading="lazy">
             <span class="sponsor-logo__label">Engineering Partner</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ TEASER -->
+    <section class="section quiz-teaser" id="quiz" aria-labelledby="quiz-teaser-heading">
+      <div class="container">
+        <div class="quiz-teaser__inner fade-in">
+          <div class="quiz-teaser__text">
+            <h2 id="quiz-teaser-heading" class="quiz-teaser__title">What kind of Hot Girl<br>Vibe Coder are you?</h2>
+            <p class="quiz-teaser__desc">Find your archetype in 60 seconds. Then bring that energy to the next stop.</p>
+            <a href="./quiz.html" class="btn btn--primary btn--lg">Take the Quiz</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRING IT TO YOUR CITY -->
+    <section class="section bring-it" id="bring-it" aria-labelledby="bring-it-heading">
+      <div class="container">
+        <div class="section__header fade-in">
+          <p class="section__label">Bring HGVC to Your City</p>
+          <h2 id="bring-it-heading" class="section__title">Want Hot Girl Vibe Coding<br>in your city?</h2>
+          <p class="section__desc">We're evaluating city hosts, sponsors, venue partners, tool partners, and community collaborators for upcoming tour stops. Tell us who you are and we'll be in touch.</p>
+        </div>
+
+        <form class="bring-it-form fade-in" action="mailto:sarahmarilynsocial@gmail.com" method="post" enctype="text/plain">
+          <div class="form-row">
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" required>
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" required>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              <span>Company or organization</span>
+              <input type="text" name="company">
+            </label>
+            <label>
+              <span>City</span>
+              <input type="text" name="city" required>
+            </label>
+          </div>
+          <label class="form-row form-row--single">
+            <span>I'm interested in</span>
+            <select name="interest" required>
+              <option value="">Choose one</option>
+              <option>Sponsoring</option>
+              <option>Hosting</option>
+              <option>Speaking</option>
+              <option>Partnering</option>
+              <option>Attending</option>
+            </select>
+          </label>
+          <label class="form-row form-row--single">
+            <span>Budget range (optional)</span>
+            <select name="budget">
+              <option value="">Choose one (optional)</option>
+              <option>Under $5K</option>
+              <option>$5K – $10K</option>
+              <option>$10K – $25K</option>
+              <option>$25K – $75K</option>
+              <option>$75K+</option>
+            </select>
+          </label>
+          <label class="form-row form-row--single">
+            <span>Tell us more</span>
+            <textarea name="message" rows="4"></textarea>
+          </label>
+          <button type="submit" class="btn btn--primary btn--lg">Bring HGVC to My City</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section final-cta">
+      <div class="container">
+        <div class="final-cta__inner fade-in">
+          <h2 class="final-cta__title">The women building with AI<br>are already here.<br>Help us bring them into the room.</h2>
+          <div class="final-cta__buttons">
+            <a href="#sponsor" class="btn btn--primary btn--lg">Sponsor the Tour</a>
+            <a href="#bring-it" class="btn btn--outline btn--lg">Bring HGVC to Your City</a>
           </div>
         </div>
       </div>
@@ -351,47 +496,47 @@
         <div class="faq-list">
           <details class="faq-item fade-in">
             <summary class="faq-item__question">
-              <span>Do I need coding experience?</span>
+              <span>What is Hot Girl Vibe Coding?</span>
               <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </summary>
             <div class="faq-item__answer">
-              <p>No! That's the whole point. Vibe coding is about using AI tools to build without traditional coding skills. We'll teach you everything you need to know.</p>
+              <p>HGVC is a national AI builder tour for women founders, creators, and operators. Each stop combines a high-energy keynote, a hands-on build sprint, sponsor-integrated tool demos, and high-signal networking — designed to move attendees from AI-curious to actively building in a single night.</p>
             </div>
           </details>
           <details class="faq-item fade-in">
             <summary class="faq-item__question">
-              <span>What should I bring?</span>
+              <span>When and where is the next stop?</span>
               <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </summary>
             <div class="faq-item__answer">
-              <p>Your laptop, charger, and an idea (even a half-baked one). We'll provide the tools, mentors, and environment to turn it into something real.</p>
+              <p>Columbus is next. We're locking in date, venue, and anchor partners now. Sign up via "Bring HGVC to Your City" to get on the waitlist or nominate yours.</p>
             </div>
           </details>
           <details class="faq-item fade-in">
             <summary class="faq-item__question">
-              <span>Who is this for?</span>
+              <span>How does sponsorship work?</span>
               <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </summary>
             <div class="faq-item__answer">
-              <p>Women, non-binary folks, and allies who want to build with AI. Whether you're a founder, creative, operator, or just curious &mdash; this is your space.</p>
+              <p>Three tiers: National Title Partner ($75K–$125K), City Presenting Partner ($10K–$25K per city), and Tool / Community Partner (in-kind or $2.5K–$7.5K). Each tier delivers a real activation — not just logo placement. Request the deck for the full menu.</p>
             </div>
           </details>
           <details class="faq-item fade-in">
             <summary class="faq-item__question">
-              <span>Will there be food and drinks?</span>
+              <span>Do attendees need coding experience?</span>
               <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </summary>
             <div class="faq-item__answer">
-              <p>Yes, complimentary drinks and light bites throughout the evening. We keep you fueled while you build.</p>
+              <p>No. That's the whole point. Vibe coding uses AI tools to build without traditional coding skills. We onboard the room from zero.</p>
             </div>
           </details>
           <details class="faq-item fade-in">
             <summary class="faq-item__question">
-              <span>Can I come alone?</span>
+              <span>Who runs HGVC?</span>
               <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </summary>
             <div class="faq-item__answer">
-              <p>Absolutely. You'll leave with a crew. The energy in the room makes it impossible not to connect.</p>
+              <p>Hot Girl Vibe Coding is produced by Sarah Barrick (Venture Partner at Eleven Wall Ventures, Founder of Viralize Technology, organizer of the Ohio Startup Network). NYC was produced in partnership with Frontier House and Eleven Wall Ventures.</p>
             </div>
           </details>
         </div>
@@ -415,7 +560,7 @@
           <span class="footer__logo-text">HOT GIRL VIBE CODING</span>
         </div>
         <div class="footer__social">
-          <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/hotgirlvibecoding/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
           </a>
           <a href="#" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
@@ -427,7 +572,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>A NY Tech Week Activation &middot; June 2026</p>
+        <p>The AI Builder Tour for Women · NYC Pilot Complete · Tour 2026</p>
         <p><a href="mailto:sarahmarilynsocial@gmail.com" target="_blank" rel="noopener noreferrer">sarahmarilynsocial@gmail.com</a></p>
       </div>
     </div>

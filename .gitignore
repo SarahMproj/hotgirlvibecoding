@@ -1,2 +1,4 @@
 .vercel
 .vercel
+*.bak
+node_modules/
