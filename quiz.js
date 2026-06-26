@@ -135,11 +135,7 @@
       power: "Magnetic clarity. You make people believe.",
       gift: "You see the company three years out, and you can describe it like it already exists.",
       shadow: "You get bored at execution. Polishing isn't your love language — and that's why you need the right systems around you.",
-      lovablePitch: "Lovable is the fastest way to put your vision in front of a real human and watch their face change. Skip the 'we're building it' phase. Build the actual thing.",
-      lovableProject: "Build a landing page + waitlist for the company you've been describing at every dinner this year. One prompt. Live URL in 20 minutes. Send it to the next person who asks 'so what are you working on?'",
-      community: "You belong in rooms with operators, designers, and at least one person who'll quit their job when you ask. The HGVC Inner Circle is that room.",
-      viralizeFit: true,   // High-value Viralize lead if marketing-ready
-      viralizePitch: "If you're at the 'I have a real thing and I need it to *move*' stage, this is where Viralize comes in — organic growth infrastructure built for founders who can't afford to wait for word-of-mouth."
+      community: "You belong in rooms with operators, designers, and at least one person who'll quit their job when you ask. The HGVC Inner Circle is that room."
     },
     A: {
       name: "The Aesthetic Engineer",
@@ -150,11 +146,7 @@
       power: "Taste at velocity. You make tools people want to touch.",
       gift: "You can tell within 3 seconds why a product feels cheap. That's a superpower most VCs can't even articulate.",
       shadow: "Perfect is the enemy of posted. Sometimes the world needs the v0.5, not the v3.",
-      lovablePitch: "Lovable is what happens when your taste finally has a build environment that can keep up. Prompt it like you'd brief a junior designer who never sleeps.",
-      lovableProject: "Build the gorgeous single-page micro-product you've been mood-boarding — portfolio, link-in-bio that doesn't look like Linktree, weird beautiful tool. The one you wouldn't be embarrassed to put on your About page.",
-      community: "You belong with the other designers-who-code, the frontend obsessives, the people who notice the easing curve on your hover state. That's HGVC Inner Circle.",
-      viralizeFit: false,
-      viralizePitch: null
+      community: "You belong with the other designers-who-code, the frontend obsessives, the people who notice the easing curve on your hover state. That's HGVC Inner Circle."
     },
     C: {
       name: "The Chaos Shipper",
@@ -165,11 +157,7 @@
       power: "Velocity. You finish things other people only talk about.",
       gift: "You have a higher tolerance for ugly-but-working than 99% of people. That tolerance is what lets you actually find product-market fit.",
       shadow: "You ship so fast you forget to tell anyone. Half your best ideas die in your own GitHub.",
-      lovablePitch: "Lovable was basically designed for your psychology. Prompt the thing. Ship the thing. If it sucks, prompt a new thing. Repeat until something hits.",
-      lovableProject: "Pick the dumbest, smallest idea in your Notes app right now. Build it tonight. Post the link tomorrow. Don't fix anything. That's the assignment.",
-      community: "You belong with the other shippers, the hackers, the people who'll DM you 'WAIT this is real?' at 2am. HGVC Inner Circle exists for exactly this.",
-      viralizeFit: false,
-      viralizePitch: null
+      community: "You belong with the other shippers, the hackers, the people who'll DM you 'WAIT this is real?' at 2am. HGVC Inner Circle exists for exactly this."
     },
     S: {
       name: "The Strategist",
@@ -180,11 +168,7 @@
       power: "Pattern recognition. You see the move three steps ahead.",
       gift: "You can tell which trends are going to be infrastructure and which are going to be cringe in 18 months. That's worth a lot of money to the right people.",
       shadow: "Analysis can become procrastination dressed up in a suit. At some point you have to ship the bet.",
-      lovablePitch: "Lovable is your fastest path from thesis → proof. Stop arguing with people about whether the idea works. Build the prototype and let the data argue for you.",
-      lovableProject: "Build a working prototype of the thesis you've been sitting on. Not a deck. Not a Notion doc. A *thing people can use*. Then watch what they actually do with it.",
-      community: "You belong with founders who are 6 months ahead of you, the investor who'll get it, and the friend who'll tell you the truth. HGVC Inner Circle is curated for exactly this.",
-      viralizeFit: true,
-      viralizePitch: "If you're sitting on a real thesis and you've already validated it, this is where Viralize comes in — organic growth infrastructure for the people quietly building category leaders."
+      community: "You belong with founders who are 6 months ahead of you, the investor who'll get it, and the friend who'll tell you the truth. HGVC Inner Circle is curated for exactly this."
     }
   };
 
@@ -227,10 +211,7 @@
     resultShadow: $('resultShadow'),
     resultPower: $('resultPower'),
 
-    // Lovable block
-    lovablePitch: $('lovablePitch'),
-    lovableProject: $('lovableProject'),
-    lovableCta: $('lovableCta'),
+
 
     // Result portrait
     resultPortrait: $('resultPortrait'),
@@ -251,9 +232,7 @@
     whatsappSuccess: $('whatsappSuccess'),
     whatsappInvite: $('whatsappInvite'),
 
-    // Viralize block (gated)
-    viralizeBlock: $('viralizeBlock'),
-    viralizePitch: $('viralizePitch'),
+
 
     // Restart + share
     restart: $('quizRestart'),
@@ -355,19 +334,6 @@
     return best;
   }
 
-  // Determines if user qualifies for the Viralize Wave Call CTA.
-  // Rules: must be (a) at a real-thing stage, (b) on a founder/operator track,
-  //        AND (c) marketing-ready signal medium or high.
-  //        Idea-stage / pure experimenter users do NOT see the call CTA.
-  function qualifiesForViralizeCall(archetypeKey) {
-    if (!ARCHETYPES[archetypeKey].viralizeFit) return false;
-    const { stage, goal, marketing_ready } = state.qual;
-    const realStage = (stage === 'traction' || stage === 'building' || stage === 'employed');
-    const seriousGoal = (goal === 'founder_track' || goal === 'operator_track' || goal === 'creator_track');
-    const ready = (marketing_ready === 'medium' || marketing_ready === 'high');
-    return realStage && seriousGoal && ready;
-  }
-
   // ============================
   // Apply archetype visuals: portrait img + OG/Twitter meta tags
   // Called by both finish() (real completion) and renderDeepLinkResult() (?result=)
@@ -443,22 +409,12 @@
     els.resultShadow.textContent = arc.shadow;
     els.resultPower.textContent = arc.power;
 
-    // Lovable block — same affiliate URL for all, archetype-specific framing
-    els.lovablePitch.textContent = arc.lovablePitch;
-    els.lovableProject.textContent = arc.lovableProject;
-    // Lovable referral URL — replace LOVABLE_REF_URL with your real affiliate link
-    els.lovableCta.href = 'https://lovable.dev/?via=hotgirlvibecoding';
+
 
     // Community block — same for all
     els.communityCopy.textContent = arc.community;
 
-    // Viralize gated CTA
-    if (qualifiesForViralizeCall(key)) {
-      els.viralizeBlock.hidden = false;
-      els.viralizePitch.textContent = arc.viralizePitch;
-    } else {
-      els.viralizeBlock.hidden = true;
-    }
+    // Viralize gated CTA removed 2026-06-26
 
     // Share URLs
     const shareUrl = window.location.origin + window.location.pathname + '?result=' + key;
@@ -596,11 +552,9 @@
     els.resultGift.textContent = arc.gift;
     els.resultShadow.textContent = arc.shadow;
     els.resultPower.textContent = arc.power;
-    els.lovablePitch.textContent = arc.lovablePitch;
-    els.lovableProject.textContent = arc.lovableProject;
-    els.lovableCta.href = 'https://lovable.dev/?via=hotgirlvibecoding';
+
     els.communityCopy.textContent = arc.community;
-    els.viralizeBlock.hidden = true;  // can't qualify without quiz data
+    // Viralize block removed 2026-06-26
     const shareUrl = window.location.href;
     const tweet = `I'm ${arc.name} — ${arc.tag} 💅\n\nWhat kind of Hot Girl Vibe Coder are you?`;
     els.shareTwitter.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}&url=${encodeURIComponent(shareUrl)}`;
